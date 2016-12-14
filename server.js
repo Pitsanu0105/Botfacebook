@@ -12,14 +12,17 @@
         }
         firebase.initializeApp(config)
         var It3k = firebase.database().ref('It3k')
-
+        var data3k = [];
+        It3k.on('child_added', function(snapshot) {
+            data3k.push(snapshot.val());
+        });
         app.use(bodyParser.json())
         app.set('port', (process.env.PORT || 4000))
         app.use(bodyParser.urlencoded({
             extended: false
         }))
         app.use(bodyParser.json())
-
+        console.log(data3k);
         app.get('/webhook', function(req, res) {
             var key = 'EAAJeCn5oY2wBACArnEtdI8TN998JFLrczb16ZAMMc5Ctr3VM3ytjkQDEteMzXppZClCLT2dvryZBWKl99hKK4Yhp5A8LNUy9emmklQ31eeCn9z7YsZAVxRKZAZBv7ZBvLtIHsW9MB5oUz3tF55vxyzIO1g0yEO6QLkvrszhjyZBLcwZDZD'
             if (req.query['hub.mode'] === 'subscribe' &&
@@ -170,7 +173,7 @@
             } else if (payload == 'noThank') {
                 sendTextMessage(senderID, "ขอบคุณที่ใช้บริการกับเรานะครับ" + "\n" + "หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ");
                 NoThank(senderID)
-            } else if (payload == 'Result'){
+            } else if (payload == 'Result') {
                 Result(senderID)
             } else if (payload == 'fineHere1') {
                 setTimeout(function() {
