@@ -1,6 +1,7 @@
         var express = require('express')
         var bodyParser = require('body-parser')
         var request = require('request')
+        var firebase = require('firebase')
         var app = express()
         import firebase from 'firebase'
         var config = {
