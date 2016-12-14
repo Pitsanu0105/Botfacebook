@@ -162,14 +162,16 @@
 
             console.log("Received postback for user %d and page %d with payload '%s' " +
                 "at %d", senderID, recipientID, payload, timeOfPostback);
-            if (payload == 'findLocation') {
-                findLocations(senderID);
+            if (payload == 'Program') {
+                Programs(senderID);
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
             } else if (payload == 'noThank') {
                 sendTextMessage(senderID, "ขอบคุณที่ใช้บริการกับเรานะครับ" + "\n" + "หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ");
                 NoThank(senderID)
+            } else if (payload == 'Result'){
+                Result(senderID)
             } else if (payload == 'fineHere1') {
                 setTimeout(function() {
                     sendTextMessage(senderID, "📌 ชือ : ดาษดาแกลเลอรี่");
@@ -415,11 +417,11 @@
                             buttons: [{
                                 type: "postback",
                                 title: "🔎 กำหนดการณ์",
-                                payload: "findLocation"
+                                payload: "Program"
                             }, {
                                 type: "postback",
                                 title: "🔎 ผลการเเข่งขัน",
-                                payload: "findLocation"
+                                payload: "Result"
                             }, {
                                 type: "postback",
                                 title: "👋 ไม่เป็นไร ขอบคุณ",
@@ -432,9 +434,13 @@
 
             callSendAPI(messageData);
         }
+        //------------ผลการเเข่งขัน---------------//
+        function Result(recipientId, messageText) {}
+
+        //-----------------------------//
         //-----------------------------------------------------------------------------
         //------------------หาสถานที่---------------------------------------------------
-        function findLocations(recipientId, messageText) {
+        function Programs(recipientId, messageText) {
             var messageData = {
                 recipient: {
                     id: recipientId
@@ -606,7 +612,7 @@
                             buttons: [{
                                 type: "postback",
                                 title: "🔎 ต้องการดูอื่นๆอีก",
-                                payload: "findLocation"
+                                payload: "Program"
                             }],
                         }
                     }
