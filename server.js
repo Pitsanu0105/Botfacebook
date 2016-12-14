@@ -12,6 +12,12 @@
         }
         setInterval(function(){console.log('eieiee') }, 17000000)
         firebase.initializeApp(config)
+        var It3k = firebase.database().ref('It3k')
+        var data3k = [];
+        It3k.on('child_added', function(snapshot) {
+            data3k.push(snapshot.val());
+            console.log(data3k);
+        });
         app.use(bodyParser.json())
         app.set('port', (process.env.PORT || 4000))
         app.use(bodyParser.urlencoded({
@@ -136,16 +142,15 @@
             console.log("Received postback for user %d and page %d with payload '%s' " +
                 "at %d", senderID, recipientID, payload, timeOfPostback);
             if (payload == 'Program') {
-              callFirebase()
-              Programs(senderID);
+                Programs(senderID);
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
             } else if (payload == 'noThank') {
                 sendTextMessage(senderID, "ขอบคุณที่ใช้บริการกับเรานะครับ" + "\n" + "หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ");
                 NoThank(senderID)
-            } else if (payload == 'resultSport') {
-                resultSport(senderID)
+            } else if (payload == 'Result') {
+                Result(senderID)
             } else if (payload == 'fineHere1') {
                 setTimeout(function() {
                     sendTextMessage(senderID, "📌 ชือ : ดาษดาแกลเลอรี่");
@@ -369,7 +374,7 @@
                     fineHeres(senderID);
                 }, 3500)
             } else {
-                var resultSport = "";
+                var result = "";
             }
 
             // When a postback is called, we'll send a message back to the sender to
@@ -395,7 +400,7 @@
                             }, {
                                 type: "postback",
                                 title: "🔎 ผลการเเข่งขัน",
-                                payload: "resultSport"
+                                payload: "Result"
                             }, {
                                 type: "postback",
                                 title: "👋 ไม่เป็นไร ขอบคุณ",
@@ -409,16 +414,7 @@
             callSendAPI(messageData);
         }
         //------------ผลการเเข่งขัน---------------//
-        function resultSport(recipientId, messageText) {}
-        function callFirebase() {
-          var It3k = firebase.database().ref('It3k')
-          var data3k = [];
-          It3k.on('child_added', function(snapshot) {
-              data3k.push(snapshot.val());
-              console.log(data3k);
-          });
-        }
-
+        function Result(recipientId, messageText) {}
 
         //-----------------------------//
         //-----------------------------------------------------------------------------
