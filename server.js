@@ -106,11 +106,6 @@
                     sendTextMessage(senderID, "สวัสดีครับ");
                 } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
                     sendTextMessage(senderID, "ยินดีบริการครับ");
-                } else if (messageText === 'ควย' || messageText === 'ฟวย' || messageText === 'สัส' || messageText === 'พ่องตาย' || messageText === 'พ่อมึงตาย' || messageText === 'แม่มึงตาย' || messageText === 'แม่งตาย') {
-                    sendTextMessage(senderID, " 👎 สุภาพหน่อยนะครับ ");
-                } else if (messageText === 'กาก') {
-                    sendTextMessage(senderID, "👎 สุภาพหน่อยนะครับ ");
-                }
                 // If we receive a text message, check to see if it matches a keyword
                 // and send back the example. Otherwise, just echo the text we received.
                 switch (messageText) {
