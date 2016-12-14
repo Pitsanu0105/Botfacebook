@@ -10,13 +10,8 @@
             storageBucket: 'it-3k-1f766.appspot.com',
             messagingSenderId: '914467199924'
         }
+        setInterval(function(){console.log('eieiee') }, 17000000)
         firebase.initializeApp(config)
-        var It3k = firebase.database().ref('It3k')
-        var data3k = [];
-        It3k.on('child_added', function(snapshot) {
-            data3k.push(snapshot.val());
-            console.log(data3k);
-        });
         app.use(bodyParser.json())
         app.set('port', (process.env.PORT || 4000))
         app.use(bodyParser.urlencoded({
@@ -106,7 +101,7 @@
                     sendTextMessage(senderID, "สวัสดีครับ");
                 } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
                     sendTextMessage(senderID, "ยินดีบริการครับ");
-                } 
+                }
                 switch (messageText) {
                     case 'HELLO':
                         sendGreetMessage(senderID);
@@ -143,6 +138,12 @@
             if (payload == 'Program') {
                 Programs(senderID);
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
+              var It3k = firebase.database().ref('It3k')
+              var data3k = [];
+              It3k.on('child_added', function(snapshot) {
+                  data3k.push(snapshot.val());
+                  console.log(data3k);
+              });
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
             } else if (payload == 'noThank') {
