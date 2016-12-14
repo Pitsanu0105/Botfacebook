@@ -208,7 +208,7 @@
               sendTextMessage(senderID, "สถานที่");
             callSendAPI(messageData);
 
-        }
+        };
         //-----------------------------------------------------------------------------
         //----------------ตอบกลับ------------------------------------------------------
         function sendTextMessage(recipientId, messageText) {
