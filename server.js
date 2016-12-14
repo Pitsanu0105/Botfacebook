@@ -2,7 +2,7 @@
         var bodyParser = require('body-parser')
         var request = require('request')
         var app = express()
-        import firebase from 'firebase'
+        import firebase from "firebase"
         var config = {
             apiKey: 'AIzaSyBasyXEYg3xGN6Y9ndOtt9chPV4m60_6Xw',
             authDomain: 'it-3k-1f766.firebaseapp.com',
