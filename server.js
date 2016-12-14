@@ -10,9 +10,7 @@
             storageBucket: 'it-3k-1f766.appspot.com',
             messagingSenderId: '914467199924'
         }
-        setInterval(function() {
-            console.log('eieiee')
-        }, 17000000)
+        setInterval(function(){console.log('eieiee') }, 17000000)
         firebase.initializeApp(config)
         var It3k = firebase.database().ref('It3k')
         var data3k = [];
@@ -422,15 +420,120 @@
         //-----------------------------------------------------------------------------
         //------------------หาสถานที่---------------------------------------------------
         function Programs(recipientId, messageText) {
-
-            var it3kquerry = data3k.find(data => data.type === 'Picture')
-            foreach (var n in it3kquerry) {
-                if (n.type == picture) {
-                    sendTextMessage(senderID, n.caption)
-                    sendTextMessage(senderID, n.picture)
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    attachment: {
+                        type: "template",
+                        payload: {
+                            template_type: "generic",
+                            elements: [{
+                                title: "ดาษดาแกลเลอรี่",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/1f6/XV3hWB.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere1"
+                                }]
+                            }, {
+                                title: "อุทยานแห่งชาติเขาใหญ่",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/963/tLXLbq.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere2"
+                                }]
+                            }, {
+                                title: "อุทยานแห่งชาติทับลาน",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/115/GscHWV.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere3"
+                                }]
+                            }, {
+                                title: "โรงพยาบาลอภัยภูเบศร",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/938/nytfo7.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere4"
+                                }]
+                            }, {
+                                title: "The Verona at Tublan",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/158/X6K3Pu.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere5"
+                                }]
+                            }, {
+                                title: "เขาทุ่ง",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/b8f/l4MHfg.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere6"
+                                }]
+                            }, {
+                                title: "แก่งหินเพิง",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/d03/8j83vO.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere7"
+                                }]
+                            }, {
+                                title: "น้ำตกเขาอีโต้",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/97f/thdg1i.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere8"
+                                }]
+                            }, {
+                                title: "อ่างเก็บน้ำจักรพงษ์",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/9a7/zp2b7A.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere9"
+                                }]
+                            }, {
+                                title: "โบราณสถานสระมรกต",
+                                item_url: "",
+                                image_url: "http://www.mx7.com/i/bed/rB7MJv.jpg",
+                                subtitle: " ",
+                                buttons: [{
+                                    type: "postback",
+                                    title: "📍 เลือกที่นี้",
+                                    payload: "fineHere10"
+                                }, ]
+                            }]
+                        }
+                    }
                 }
-            }
-
+            };
             callSendAPI(messageData);
         }
         //-----------------------------------------------------------------------------
