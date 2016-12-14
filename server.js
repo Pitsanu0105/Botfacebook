@@ -205,7 +205,8 @@
               console.log(it3kquerry.location);
               console.log(it3kquerry.time);
               console.log(it3kquerry.message);
-              sendTextMessage(senderID, "สถานที่");
+              sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
+              sendGreetMessage(senderID)
             callSendAPI(messageData);
 
         };
