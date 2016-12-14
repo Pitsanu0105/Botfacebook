@@ -106,8 +106,7 @@
                     sendTextMessage(senderID, "สวัสดีครับ");
                 } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
                     sendTextMessage(senderID, "ยินดีบริการครับ");
-                // If we receive a text message, check to see if it matches a keyword
-                // and send back the example. Otherwise, just echo the text we received.
+                } 
                 switch (messageText) {
                     case 'HELLO':
                         sendGreetMessage(senderID);
@@ -120,6 +119,7 @@
                         break;
                     case 'ขอบใจ':
                         break;
+
                     default:
                         sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
                         sendGreetMessage(senderID)
