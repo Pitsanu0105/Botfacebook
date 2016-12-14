@@ -205,7 +205,7 @@
               console.log(it3kquerry.location);
               console.log(it3kquerry.time);
               console.log(it3kquerry.message);
-              sendTextMessage(senderID, it3kquerry.location);
+              sendTextMessage(senderID, "สถานที่");
             callSendAPI(messageData);
         }
         //-----------------------------------------------------------------------------
