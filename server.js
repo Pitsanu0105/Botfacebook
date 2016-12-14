@@ -424,7 +424,7 @@
         function Programs(recipientId, messageText) {
 
             var it3kquerry = data3k.find(data => data.type === 'Picture')
-            foreach(it3kquerry) {
+            foreach (it3kquerry) {
                 if (it3kquerry.type == picture) {
                     sendTextMessage(senderID, it3kquerry.caption)
                     sendTextMessage(senderID, it3kquerry.picture)
