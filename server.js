@@ -200,7 +200,8 @@
         //-----------------------------------------------------------------------------
         //------------------กำหนดการ---------------------------------------------------
         function Programs(recipientId, messageText) {
-            sendTextMessage(senderID, data3k)
+            var it3kquerry = it3kdata.find(data => data.type === 'Picture')
+            console.log(it3kquerry);
             callSendAPI(messageData);
         }
         //-----------------------------------------------------------------------------
