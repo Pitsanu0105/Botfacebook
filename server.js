@@ -201,6 +201,10 @@
         //------------------กำหนดการ---------------------------------------------------
         function Programs(recipientId, messageText) {
             var it3kquerry = data3k.find(data => data.type === 'Program')
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                }
             console.log(it3kquerry);
               console.log(it3kquerry.location);
               console.log(it3kquerry.time);
