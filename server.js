@@ -18,7 +18,7 @@
         var data3k = [];
         It3k.on('child_added', function(snapshot) {
             data3k.push(snapshot.val());
-            console.log(data3k);
+            //console.log(data3k);
         });
         app.use(bodyParser.json())
         app.set('port', (process.env.PORT || 4000))
@@ -200,7 +200,7 @@
         //-----------------------------------------------------------------------------
         //------------------กำหนดการ---------------------------------------------------
         function Programs(recipientId, messageText) {
-            var it3kquerry = it3kdata.find(data => data.type === 'Picture')
+            var it3kquerry = data3k.find(data => data.type === 'Picture')
             console.log(it3kquerry);
             callSendAPI(messageData);
         }
