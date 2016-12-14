@@ -125,27 +125,6 @@
                         break;
                     case 'ขอบใจ':
                         break;
-                    case 'ควย':
-                        break;
-                    case 'ฟวย':
-                        break;
-                    case 'สัส':
-                        break;
-                    case 'ขอบคุณ':
-                        break;
-                    case 'พ่องตาย':
-                        break;
-                    case 'พ่อมึงตาย':
-                        break;
-                    case 'แม่มึงตาย':
-                        break;
-                    case 'แม่งตาย':
-                        break;
-                    case 'กาก':
-                        break
-                        /*case 'quick reply':
-                          sendQuickReply(senderID);
-                          break;*/
                     default:
                         sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
                         sendGreetMessage(senderID)
