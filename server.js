@@ -136,9 +136,9 @@
             console.log("Received postback for user %d and page %d with payload '%s' " +
                 "at %d", senderID, recipientID, payload, timeOfPostback);
             if (payload == 'Program') {
+                callFirebase()
                 Programs(senderID);
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
-                callFirebase()
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
             } else if (payload == 'noThank') {
