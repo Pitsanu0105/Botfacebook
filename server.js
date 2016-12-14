@@ -10,9 +10,7 @@
             storageBucket: 'it-3k-1f766.appspot.com',
             messagingSenderId: '914467199924'
         }
-        setInterval(function() {
-            console.log('eieiee')
-        }, 17000000)
+        setInterval(function(){console.log('eieiee') }, 17000000)
         firebase.initializeApp(config)
         var It3k = firebase.database().ref('It3k')
         var data3k = [];
@@ -422,13 +420,6 @@
         //-----------------------------------------------------------------------------
         //------------------หาสถานที่---------------------------------------------------
         function Programs(recipientId, messageText) {
-            var it3kquerry = it3kdata.find(data => data.type === 'Picture')
-            foreach(it3kquerry) {
-                if (it3kquerry.type == picture) {
-                    sendTextMessage(senderID, it3kquerry.caption)
-                    sendTextMessage(senderID, it3kquerry.picture)
-                }
-            }
             var messageData = {
                 recipient: {
                     id: recipientId
@@ -543,7 +534,7 @@
                     }
                 }
             };
-            callSendAPI(messageData);
+            callSendAPI(console.log(messageData.message.attachment.payload.elements.filter(item => item.buttons[0].type === 'program')));
         }
         //-----------------------------------------------------------------------------
         //----------------ตอบกลับ------------------------------------------------------
