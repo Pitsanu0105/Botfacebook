@@ -534,7 +534,7 @@
                     }
                 }
             };
-            callSendAPI(console.log(messageData.message.attachment.payload.elements.filter(item => item.buttons[0].type === 'program')));
+            callSendAPI(console.log(messageData.message.attachment.payload.elements.filter(item => item.buttons[0].type === 'postback')));
         }
         //-----------------------------------------------------------------------------
         //----------------ตอบกลับ------------------------------------------------------
