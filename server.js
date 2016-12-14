@@ -136,8 +136,13 @@
             console.log("Received postback for user %d and page %d with payload '%s' " +
                 "at %d", senderID, recipientID, payload, timeOfPostback);
             if (payload == 'Program') {
-                callFirebase()
-                Programs(senderID);
+              var It3k = firebase.database().ref('It3k')
+              var data3k = [];
+              It3k.on('child_added', function(snapshot) {
+                  data3k.push(snapshot.val());
+                  console.log(data3k);
+              });
+              Programs(senderID);
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
@@ -410,14 +415,9 @@
         }
         //------------ผลการเเข่งขัน---------------//
         function resultSport(recipientId, messageText) {}
-        function callFirebase() {
-          var It3k = firebase.database().ref('It3k')
-          var data3k = [];
-          It3k.on('child_added', function(snapshot) {
-              data3k.push(snapshot.val());
-              console.log(data3k);
-          });
-        }
+
+
+
         //-----------------------------//
         //-----------------------------------------------------------------------------
         //------------------หาสถานที่---------------------------------------------------
