@@ -418,11 +418,6 @@
                                 payload: "findLocation"
                             }, {
                                 type: "postback",
-                                title: "🔎 กำลังเเข่งขัน",
-                                payload: "findLocation"
-                            },
-                             {
-                                type: "postback",
                                 title: "🔎 ผลการเเข่งขัน",
                                 payload: "findLocation"
                             }, {
