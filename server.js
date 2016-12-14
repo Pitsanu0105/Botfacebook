@@ -202,6 +202,7 @@
         function Programs(recipientId, messageText) {
             var it3kquerry = data3k.find(data => data.type === 'Program')
             console.log(it3kquerry);
+              console.log(it3kquerry.location);
               sendTextMessage(senderID, it3kquerry.location);
             callSendAPI(messageData);
         }
