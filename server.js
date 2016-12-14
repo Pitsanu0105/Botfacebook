@@ -420,6 +420,9 @@
         //-----------------------------------------------------------------------------
         //------------------หาสถานที่---------------------------------------------------
         function Programs(recipientId, messageText) {
+              var it3kquerry = data3k.find(data => data.type === 'Picture')
+              sendTextMessage(senderID,it3kquerry)
+
           /*  var messageData = {
                 recipient: {
                     id: recipientId
