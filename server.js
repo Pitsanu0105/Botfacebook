@@ -188,7 +188,7 @@
             console.log(it3kquerry.location);
             console.log(it3kquerry.time);
             console.log(it3kquerry.message);
-
+            console.log("==============================Program==========================");
             sendTextMessage(recipientId, it3kquerry)
         };
         //-----------------------------------------------------------------------------
