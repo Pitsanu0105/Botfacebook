@@ -57,7 +57,7 @@
                         } else if (messagingEvent.postback) {
                             receivedPostback(messagingEvent);
                         } else {
-                          //  console.log("Webhook received unknown messagingEvent: ", messagingEvent);
+                            console.log("Webhook received unknown messagingEvent: ", messagingEvent);
                         }
                     });
                 });
@@ -76,9 +76,9 @@
             var timeOfMessage = event.timestamp;
             var message = event.message;
 
-          //  console.log("Received message for user %d and page %d at %d with message:",
+            console.log("Received message for user %d and page %d at %d with message:",
                 senderID, recipientID, timeOfMessage);
-            //console.log(JSON.stringify(message));
+            console.log(JSON.stringify(message));
 
             var isEcho = message.is_echo;
             var messageId = message.mid;
@@ -127,8 +127,8 @@
             // button for Structured Messages.
             var payload = event.postback.payload;
 
-            //console.log("Received postback for user %d and page %d with payload '%s' " +
-                //"at %d", senderID, recipientID, payload, timeOfPostback);
+            console.log("Received postback for user %d and page %d with payload '%s' " +
+                "at %d", senderID, recipientID, payload, timeOfPostback);
             if (payload == 'Program') {
                 Programs(senderID);
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
@@ -185,9 +185,9 @@
         function Programs(recipientId) {
             var it3kquerry = data3k.find(data => data.type === 'Program')
             console.log(it3kquerry);
-            // console.log(it3kquerry.location);
-            // console.log(it3kquerry.time);
-            // console.log(it3kquerry.message);
+            console.log(it3kquerry.location);
+            console.log(it3kquerry.time);
+            console.log(it3kquerry.message);
             console.log("==============================Program==========================");
             sendTextMessage(recipientId, it3kquerry)
         };
@@ -221,12 +221,12 @@
                     var recipientId = body.recipient_id;
                     var messageId = body.message_id;
 
-                    // console.log("Successfully sent generic message with id %s to recipient %s",
-                    //     messageId, recipientId);
+                    console.log("Successfully sent generic message with id %s to recipient %s",
+                        messageId, recipientId);
                 } else {
-                    // console.error("Unable to send message.");
-                    // console.error(response);
-                    // console.error(error);
+                    console.error("Unable to send message.");
+                    console.error(response);
+                    console.error(error);
                 }
             });
         }
