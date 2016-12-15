@@ -15,9 +15,15 @@ setInterval(function () {
 }, 17000000)
 firebase.initializeApp(config)
 var It3k = firebase.database().ref('It3k')
+var ScoreSports = firebase.database().ref('ScoreSports')
 var data3k = []
+var DataScoreSports = []
 It3k.on('child_added', function (snapshot) {
   data3k.push(snapshot.val())
+// console.log(data3k)
+})
+ScoreSports.on('child_added', function (snapshot) {
+  DataScoreSports.push(snapshot.val())
 // console.log(data3k)
 })
 app.use(bodyParser.json())
@@ -43,7 +49,7 @@ app.get('/webhook', function (req, res) {
     // res.sendStatus(403)
     It3k.on('value', function (snapshot) {
       data3k.push(snapshot.val())
-      var it3kquerry = data3k.filter(data => data.type === 'Program')
+      var it3kquerry = DataScoreSports.filter(data => data.status === false)
       res.json(it3kquerry)
     // console.log(data3k)
     })
@@ -341,7 +347,53 @@ function sendGreetMessage (recipientId, messageText) {
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
-function Result (recipientId, messageText) {}
+function Result (recipientId) {
+  DataScoreSports.filter(item => item.status === true)
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      'attachment': {
+        'type': 'template',
+        'payload': {
+          'template_type': 'list',
+          'elements': [
+            {
+              'title': 'Classic Black T-Shirt',
+              'image_url': 'https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png',
+              'subtitle': '100% Cotton, 200% Comfortable',
+              'default_action': {
+                'type': 'web_url',
+                'url': 'https://peterssendreceiveapp.ngrok.io/view?item=102',
+                'messenger_extensions': true,
+                'webview_height_ratio': 'tall',
+                'fallback_url': 'https://peterssendreceiveapp.ngrok.io/'
+              },
+              'buttons': [
+                {
+                  'title': 'Shop Now',
+                  'type': 'web_url',
+                  'url': 'https://peterssendreceiveapp.ngrok.io/shop?item=102',
+                  'messenger_extensions': true,
+                  'webview_height_ratio': 'tall',
+                  'fallback_url': 'https://peterssendreceiveapp.ngrok.io/'
+                }
+              ]
+            }
+          ],
+          'buttons': [
+            {
+              'title': 'View More',
+              'type': 'postback',
+              'payload': 'payload'
+            }
+          ]
+        }
+      }
+    }
+  }
+}
 // -----------------------------//
 // -----------------------------------------------------------------------------
 // ------------------กำหนดการ---------------------------------------------------
@@ -394,7 +446,8 @@ function Programs (recipientId) {
   //   }
   // }
   let pic = 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300'
-  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
+  it3kquerry.forEach((item) => {
+    messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]})})
   console.log('==============================Program==========================')
 
   callSendAPI(messageData)
