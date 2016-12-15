@@ -15,15 +15,9 @@ setInterval(function () {
 }, 17000000)
 firebase.initializeApp(config)
 var It3k = firebase.database().ref('It3k')
-var ScoreSports = firebase.database().ref('ScoreSports')
 var data3k = []
-var DataScoreSports = []
 It3k.on('child_added', function (snapshot) {
   data3k.push(snapshot.val())
-// console.log(data3k)
-})
-ScoreSports.on('child_added', function (snapshot) {
-  DataScoreSports.push(snapshot.val())
 // console.log(data3k)
 })
 app.use(bodyParser.json())
@@ -38,21 +32,10 @@ app.get('/webhook', function (req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
     req.query['hub.verify_token'] === key) {
     console.log('Validating webhook')
-    // res.send(req.query['hub.challenge'])
-    It3k.on('value', function (snapshot) {
-      data3k.push(snapshot.val())
-      res.json(snapshot.val())
-    // console.log(data3k)
-    })
+    res.send(req.query['hub.challenge'])
   } else {
-    // console.error('Failed validation. Make sure the validation tokens match.')
-    // res.sendStatus(403)
-    It3k.on('value', function (snapshot) {
-      data3k.push(snapshot.val())
-      var it3kquerry = DataScoreSports.filter(data => data.status === false)
-      res.json(it3kquerry)
-    // console.log(data3k)
-    })
+    console.error('Failed validation. Make sure the validation tokens match.')
+    res.sendStatus(403)
   }
 })
 
@@ -195,126 +178,9 @@ function sendGreetMessage (recipientId, messageText) {
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
-app.get('/webhook', function (req, res) {
-  var key = 'EAAJeCn5oY2wBACArnEtdI8TN998JFLrczb16ZAMMc5Ctr3VM3ytjkQDEteMzXppZClCLT2dvryZBWKl99hKK4Yhp5A8LNUy9emmklQ31eeCn9z7YsZAVxRKZAZBv7ZBvLtIHsW9MB5oUz3tF55vxyzIO1g0yEO6QLkvrszhjyZBLcwZDZD'
-  if (req.query['hub.mode'] === 'subscribe' &&
-    req.query['hub.verify_token'] === key) {
-    console.log('Validating webhook')
-    res.send(req.query['hub.challenge'])
-  } else {
-    console.error('Failed validation. Make sure the validation tokens match.')
-    res.sendStatus(403)
-  }
-})
-
-app.post('/webhook', function (req, res) {
-  var data = req.body
-
-  // Make sure this is a page subscription
-  if (data.object == 'page') {
-    // Iterate over each entry
-    // There may be multiple if batched
-    data.entry.forEach(function (pageEntry) {
-      var pageID = pageEntry.id
-      var timeOfEvent = pageEntry.time
-
-      // Iterate over each messaging event
-      pageEntry.messaging.forEach(function (messagingEvent) {
-        if (messagingEvent.message) {
-          receivedMessage(messagingEvent)
-        } else if (messagingEvent.postback) {
-          receivedPostback(messagingEvent)
-        } else {
-          // console.log('Webhook received unknown messagingEvent: ', messagingEvent)
-        }
-      })
-    })
-
-    // Assume all went well.
-    //
-    // You must send back a 200, within 20 seconds, to let us know you've
-    // successfully received the callback. Otherwise, the request will time out.
-    res.sendStatus(200)
-  }
-})
-
-function receivedMessage (event) {
-  var senderID = event.sender.id
-  var recipientID = event.recipient.id
-  var timeOfMessage = event.timestamp
-  var message = event.message
-
-  // console.log('Received message for user %d and page %d at %d with message:',
-  //   senderID, recipientID, timeOfMessage)
-  // console.log(JSON.stringify(message))
-
-  var isEcho = message.is_echo
-  var messageId = message.mid
-  var appId = message.app_id
-  var metadata = message.metadata
-
-  // You may get a text or attachment but not both
-  var messageText = message.text
-  var messageAttachments = message.attachments
-  var quickReply = message.quick_reply
-
-  if (messageText) {
-    if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
-      sendTextMessage(senderID, 'สวัสดีครับ')
-    } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
-      sendTextMessage(senderID, 'ยินดีบริการครับ')
-    }
-    switch (messageText) {
-      case 'HELLO':
-        sendGreetMessage(senderID)
-        break
-      case 'hello':
-        sendGreetMessage(senderID)
-        break
-      case 'Hello':
-        sendGreetMessage(senderID)
-        break
-      case 'ขอบใจ':
-        break
-
-      default:
-        sendTextMessage(senderID, 'เราไม่เข้าใจในสิ่งที่คุณต้องการ')
-        sendGreetMessage(senderID)
-    }
-  } else if (messageAttachments) {
-    sendTextMessage(senderID, 'ครับ')
-  }
-}
-
-function receivedPostback (event) {
-  var senderID = event.sender.id
-  var recipientID = event.recipient.id
-  var timeOfPostback = event.timestamp
-
-  // The 'payload' param is a developer-defined field which is set in a postback
-  // button for Structured Messages.
-  var payload = event.postback.payload
-
-  console.log("Received postback for user %d and page %d with payload '%s' " +
-    'at %d', senderID, recipientID, payload, timeOfPostback)
-  if (payload === 'Program') {
-    Programs(senderID)
-  } else if (payload === 'USER_DEFINED_PAYLOAD') {
-    sendTextMessage(senderID, 'สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ')
-    sendGreetMessage(senderID)
-  } else if (payload === 'noThank') {
-    sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
-    NoThank(senderID)
-  } else if (payload === 'Result') {
-    Result(senderID)
-  } else if (payload === 'detail') {
-    console.log('detail')
-  } else {
-    var result = ''
-  }
-}
-// --------------------ทักทายตอบกลับ---------------------------
-function sendGreetMessage (recipientId, messageText) {
+// ------------ผลการเเข่งขัน---------------//
+function Result (recipientId) {
+  DataScoreSports.filter(item => item.status === true)
   var messageData = {
     recipient: {
       id: recipientId
@@ -322,58 +188,51 @@ function sendGreetMessage (recipientId, messageText) {
     message: {
       attachment: {
         type: 'template',
-        payload: {
-          template_type: 'button',
-          text: 'เลือกสิ่งที่คุณต้องการ',
-          buttons: [{
-            type: 'postback',
-            title: '🔎 กำหนดการ',
-            payload: 'Program'
-          }, {
-            type: 'postback',
-            title: '🔎 ผลการเเข่งขัน',
-            payload: 'Result'
-          }, {
-            type: 'postback',
-            title: '👋 ไม่เป็นไร ขอบคุณ',
-            payload: 'noThank'
-          }]
+        'payload': {
+          'template_type': 'list',
+          'elements': [
+            {
+              'title': 'Classic Black T-Shirt',
+              'image_url': 'https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png',
+              'subtitle': '100% Cotton, 200% Comfortable',
+              'default_action': {
+                'type': 'web_url',
+                'url': 'https://peterssendreceiveapp.ngrok.io/view?item=102',
+                'messenger_extensions': true,
+                'webview_height_ratio': 'tall',
+                'fallback_url': 'https://peterssendreceiveapp.ngrok.io/'
+              },
+              'buttons': [
+                {
+                  'title': 'Shop Now',
+                  'type': 'web_url',
+                  'url': 'https://peterssendreceiveapp.ngrok.io/shop?item=102',
+                  'messenger_extensions': true,
+                  'webview_height_ratio': 'tall',
+                  'fallback_url': 'https://peterssendreceiveapp.ngrok.io/'
+                }
+              ]
+            }
+          ],
+          'buttons': [
+            {
+              'title': 'View More',
+              'type': 'postback',
+              'payload': 'payload'
+            }
+          ]
         }
       }
     }
   }
-
   callSendAPI(messageData)
 }
-
+// -----------------------------//
+// -----------------------------//
 // -----------------------------------------------------------------------------
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
-  var it3kquerry = data3k.filter(data => data.type === 'Program')
-  // var messageData = {
-  //   recipient: {
-  //     id: recipientId
-  //   },
-  //   message: {
-  //     attachment: {
-  //       type: 'template',
-  //       payload: {
-  //         template_type: 'generic',
-  //         elements: [
-  //           {
-  //             title: it3kquerry.message,
-  //             image_url: 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300',
-  //             buttons: [{
-  //               type: 'postback',
-  //               title: 'รายละเอียด',
-  //               payload: 'detail'
-  //             }]
-  //           }
-  //         ]
-  //       }
-  //     }
-  //   }
-  // }
+  var it3kquerry = data3k.find(data => data.type === 'Program')
   var messageData = {
     recipient: {
       id: recipientId
@@ -386,19 +245,11 @@ function Programs (recipientId) {
           elements: []
         }
       }
+      // text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.time} ข้อความ ${it3kquerry.message}`
     }
   }
-  // var messageData = {
-  //   recipient: {
-  //     id: recipientId
-  //   },
-  //   message: {
-  //     text: JSON.stringify(it3kquerry)
-  //   }
-  // }
   let pic = 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300'
-  it3kquerry.forEach((item) => {
-    messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]})})
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
   console.log('==============================Program==========================')
 
   callSendAPI(messageData)
@@ -434,6 +285,7 @@ function callSendAPI (messageData) {
     if (!error && response.statusCode === 200) {
       var recipientId = body.recipient_id
       var messageId = body.message_id
+
       console.log('Successfully sent generic message with id %s to recipient %s',
         messageId, recipientId)
     } else {
