@@ -188,7 +188,7 @@ function Programs (recipientId) {
       id: recipientId
     },
     message: {
-      text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.item} ข้อความ ${it3kquerry.message}`
+      text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.time} ข้อความ ${it3kquerry.message}`
     }
   }
   console.log('==============================Program==========================')
