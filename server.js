@@ -144,13 +144,16 @@
             console.log("Received postback for user %d and page %d with payload '%s' " +
                 "at %d", senderID, recipientID, payload, timeOfPostback);
             if (payload == 'Program') {
-                Programs(senderID,payload);
+                Programs(senderID);
+                payload == "menu"
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
             } else if (payload == 'noThank') {
                 sendTextMessage(senderID, "ขอบคุณที่ใช้บริการกับเรานะครับ" + "\n" + "หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ");
                 NoThank(senderID)
+            }else if (payload == 'menu') {
+                sendGreetMessage(senderID)
             } else if (payload == 'Result') {
                 Result(senderID)
             } else {
@@ -199,14 +202,14 @@
         //-----------------------------//
         //-----------------------------------------------------------------------------
         //------------------กำหนดการ---------------------------------------------------
-        function Programs(recipientId,payload) {
+        function Programs(recipientId) {
             var it3kquerry = data3k.find(data => data.type === 'Program')
             console.log(it3kquerry);
             console.log(it3kquerry.location);
             console.log(it3kquerry.time);
             console.log(it3kquerry.message);
             sendTextMessage(recipientId, " it3kquerry.location")
-            payload: " "
+
 
 
 
