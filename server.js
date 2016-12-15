@@ -145,7 +145,7 @@
                 "at %d", senderID, recipientID, payload, timeOfPostback);
             if (payload == 'Program') {
                 Programs(senderID);
-                payload == "menu"
+                payload : "menu"
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
