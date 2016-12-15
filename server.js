@@ -200,8 +200,8 @@
         //-----------------------------------------------------------------------------
         //------------------กำหนดการ---------------------------------------------------
         function Programs(recipientId, payload) {
-            /*  var it3kquerry = data3k.find(data => data.type === 'Program')
-              console.log(it3kquerry);
+          var it3kquerry = data3k.find(data => data.type === 'Program')
+            /*  console.log(it3kquerry);
                 console.log(it3kquerry.location);
                 console.log(it3kquerry.time);
                 console.log(it3kquerry.message);
