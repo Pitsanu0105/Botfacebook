@@ -183,12 +183,17 @@ function Result (recipientId, messageText) {}
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
   var it3kquerry = data3k.find(data => data.type === 'Program')
-  // console.log(it3kquerry)
-  // console.log(it3kquerry.location)
-  // console.log(it3kquerry.time)
-  // console.log(it3kquerry.message)
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.item} ข้อความ ${it3kquerry.message}`
+    }
+  }
   console.log('==============================Program==========================')
-  sendTextMessage(recipientId, JSON.stringify(it3kquerry))
+
+  callSendAPI(messageData)
 }
 // -----------------------------------------------------------------------------
 // ----------------ตอบกลับ------------------------------------------------------
