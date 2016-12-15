@@ -379,7 +379,7 @@ function Programs (recipientId) {
       id: recipientId
     },
     message: {
-      text: JSON.stringify(it3kquerry)
+      text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.item} ข้อความ ${it3kquerry.message}`
     }
   }
   let pic = 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300'
