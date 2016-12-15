@@ -360,18 +360,26 @@ function Programs (recipientId) {
   //     }
   //   }
   // }
+  // var messageData = {
+  //   recipient: {
+  //     id: recipientId
+  //   },
+  //   message: {
+  //     attachment: {
+  //       type: 'template',
+  //       payload: {
+  //         template_type: 'generic',
+  //         elements: []
+  //       }
+  //     }
+  //   }
+  // }
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'generic',
-          elements: []
-        }
-      }
+      text: JSON.stringify(it3kquerry)
     }
   }
   let pic = 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300'
