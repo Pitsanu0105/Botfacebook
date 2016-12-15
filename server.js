@@ -336,6 +336,30 @@ function Result (recipientId, messageText) {}
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
   var it3kquerry = data3k.find(data => data.type === 'Program')
+  // var messageData = {
+  //   recipient: {
+  //     id: recipientId
+  //   },
+  //   message: {
+  //     attachment: {
+  //       type: 'template',
+  //       payload: {
+  //         template_type: 'generic',
+  //         elements: [
+  //           {
+  //             title: it3kquerry.message,
+  //             image_url: 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300',
+  //             buttons: [{
+  //               type: 'postback',
+  //               title: 'รายละเอียด',
+  //               payload: 'detail'
+  //             }]
+  //           }
+  //         ]
+  //       }
+  //     }
+  //   }
+  // }
   var messageData = {
     recipient: {
       id: recipientId
@@ -345,24 +369,13 @@ function Programs (recipientId) {
         type: 'template',
         payload: {
           template_type: 'generic',
-          elements: [
-            {
-              title: it3kquerry.message,
-              image_url: 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300',
-              buttons: [{
-                type: 'postback',
-                title: 'รายละเอียด',
-                payload: 'detail'
-              }]
-            }
-          ]
+          elements: []
         }
       }
-      // text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.time} ข้อความ ${it3kquerry.message}`
     }
   }
-  // let pic = 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300'
-  // it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
+  let pic = 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300'
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
   console.log('==============================Program==========================')
 
   callSendAPI(messageData)
