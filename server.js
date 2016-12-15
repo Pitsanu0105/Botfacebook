@@ -32,10 +32,21 @@ app.get('/webhook', function (req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
     req.query['hub.verify_token'] === key) {
     console.log('Validating webhook')
-    res.send(req.query['hub.challenge'])
+    // res.send(req.query['hub.challenge'])
+    It3k.on('value', function (snapshot) {
+      data3k.push(snapshot.val())
+      res.json(snapshot.val())
+    // console.log(data3k)
+    })
   } else {
-    console.error('Failed validation. Make sure the validation tokens match.')
-    res.sendStatus(403)
+    // console.error('Failed validation. Make sure the validation tokens match.')
+    // res.sendStatus(403)
+    It3k.on('value', function (snapshot) {
+      data3k.push(snapshot.val())
+      var it3kquerry = data3k.filter(data => data.type === 'Program')
+      res.json(it3kquerry)
+    // console.log(data3k)
+    })
   }
 })
 
@@ -335,7 +346,7 @@ function Result (recipientId, messageText) {}
 // -----------------------------------------------------------------------------
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
-  var it3kquerry = data3k.find(data => data.type === 'Program')
+  var it3kquerry = data3k.filter(data => data.type === 'Program')
   // var messageData = {
   //   recipient: {
   //     id: recipientId
@@ -360,28 +371,28 @@ function Programs (recipientId) {
   //     }
   //   }
   // }
-  // var messageData = {
-  //   recipient: {
-  //     id: recipientId
-  //   },
-  //   message: {
-  //     attachment: {
-  //       type: 'template',
-  //       payload: {
-  //         template_type: 'generic',
-  //         elements: []
-  //       }
-  //     }
-  //   }
-  // }
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: JSON.stringify(it3kquerry)
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'generic',
+          elements: []
+        }
+      }
     }
   }
+  // var messageData = {
+  //   recipient: {
+  //     id: recipientId
+  //   },
+  //   message: {
+  //     text: JSON.stringify(it3kquerry)
+  //   }
+  // }
   // let pic = 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300'
   // it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
   console.log('==============================Program==========================')
