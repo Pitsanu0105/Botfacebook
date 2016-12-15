@@ -206,7 +206,7 @@
                 console.log(it3kquerry.time);
                 console.log(it3kquerry.message);
                 sendTextMessage(recipientId," it3kquerry.location")
-                sendGreetMessage(senderID)
+                sendGreetMessage(recipientId)
 
 
             /*  var messageData = {
