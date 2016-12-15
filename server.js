@@ -195,7 +195,6 @@ function sendGreetMessage (recipientId, messageText) {
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
-function Result (recipientId, messageText) {}
 app.get('/webhook', function (req, res) {
   var key = 'EAAJeCn5oY2wBACArnEtdI8TN998JFLrczb16ZAMMc5Ctr3VM3ytjkQDEteMzXppZClCLT2dvryZBWKl99hKK4Yhp5A8LNUy9emmklQ31eeCn9z7YsZAVxRKZAZBv7ZBvLtIHsW9MB5oUz3tF55vxyzIO1g0yEO6QLkvrszhjyZBLcwZDZD'
   if (req.query['hub.mode'] === 'subscribe' &&
@@ -346,55 +345,7 @@ function sendGreetMessage (recipientId, messageText) {
 
   callSendAPI(messageData)
 }
-// ------------ผลการเเข่งขัน---------------//
-function Result (recipientId) {
-  DataScoreSports.filter(item => item.status === true)
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      'attachment': {
-        'type': 'template',
-        'payload': {
-          'template_type': 'list',
-          'elements': [
-            {
-              'title': 'Classic Black T-Shirt',
-              'image_url': 'https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png',
-              'subtitle': '100% Cotton, 200% Comfortable',
-              'default_action': {
-                'type': 'web_url',
-                'url': 'https://peterssendreceiveapp.ngrok.io/view?item=102',
-                'messenger_extensions': true,
-                'webview_height_ratio': 'tall',
-                'fallback_url': 'https://peterssendreceiveapp.ngrok.io/'
-              },
-              'buttons': [
-                {
-                  'title': 'Shop Now',
-                  'type': 'web_url',
-                  'url': 'https://peterssendreceiveapp.ngrok.io/shop?item=102',
-                  'messenger_extensions': true,
-                  'webview_height_ratio': 'tall',
-                  'fallback_url': 'https://peterssendreceiveapp.ngrok.io/'
-                }
-              ]
-            }
-          ],
-          'buttons': [
-            {
-              'title': 'View More',
-              'type': 'postback',
-              'payload': 'payload'
-            }
-          ]
-        }
-      }
-    }
-  }
-}
-// -----------------------------//
+
 // -----------------------------------------------------------------------------
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
