@@ -15,7 +15,12 @@ setInterval(function () {
 }, 17000000)
 firebase.initializeApp(config)
 var It3k = firebase.database().ref('It3k')
+var ScoreSports = firebase.database().ref('ScoreSports')
+var DataScoreSports = []
 var data3k = []
+ScoreSports.on('child_added', function (snapshot) {
+  DataScoreSports.push(snapshot.val())
+})
 It3k.on('child_added', function (snapshot) {
   data3k.push(snapshot.val())
 // console.log(data3k)
@@ -232,7 +237,7 @@ function Result (recipientId) {
 // -----------------------------------------------------------------------------
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
-  var it3kquerry = data3k.find(data => data.type === 'Program')
+  var it3kquerry = data3k.filter(data => data.type === 'Program')
   var messageData = {
     recipient: {
       id: recipientId
@@ -245,7 +250,6 @@ function Programs (recipientId) {
           elements: []
         }
       }
-      // text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.time} ข้อความ ${it3kquerry.message}`
     }
   }
   let pic = 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300'
