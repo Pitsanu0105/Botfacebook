@@ -90,20 +90,6 @@
             var messageAttachments = message.attachments;
             var quickReply = message.quick_reply;
 
-
-            /* if (isEcho) {
-               // Just logging message echoes to console
-               console.log("Received echo for message %s and app %d with metadata %s",
-                 messageId, appId, metadata);
-               return;
-             } else if (quickReply) {
-               var quickReplyPayload = quickReply.payload;
-               console.log("Quick reply for message %s with payload %s",
-                 messageId, quickReplyPayload);
-               sendTextMessage(senderID, "Quick reply tapped");
-               return;
-             }*/
-
             if (messageText) {
                 if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
                     sendTextMessage(senderID, "สวัสดีครับ");
@@ -160,9 +146,6 @@
                 var result = "";
             }
 
-            // When a postback is called, we'll send a message back to the sender to
-            // let them know it was successful
-            // sendTextMessage(senderID, emoji);
         }
         // --------------------ทักทายตอบกลับ---------------------------
         function sendGreetMessage(recipientId, messageText) {
@@ -209,37 +192,6 @@
             console.log(it3kquerry.time);
             console.log(it3kquerry.message);
             sendTextMessage(recipientId, " it3kquerry.location")
-
-
-
-
-            /*  var messageData = {
-                  recipient: {
-                      id: recipientId
-                  },
-                  message: {
-                      attachment: {
-                          type: "template",
-                          payload: {
-                              template_type: "button",
-                              text: "เลือกสิ่งที่คุณต้องการ",
-                              buttons: [{
-                                  type: "postback",
-                                  title: "🔎 กำหนดการ",
-                                  payload: "Program"
-                              }, {
-                                  type: "postback",
-                                  title: "🔎 ผลการเเข่งขัน",
-                                  payload: "Result"
-                              }, {
-                                  type: "postback",
-                                  title: "👋 ไม่เป็นไร ขอบคุณ",
-                                  payload: "noThank"
-                              }],
-                          }
-                      }
-                  }
-              };*/
             callSendAPI(messageData);
 
         };
