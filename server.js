@@ -208,7 +208,7 @@
                 sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
                 sendGreetMessage(senderID)*/
             if (payload == 'Program') {
-                sendTextMessage(recipientId, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
+                sendTextMessage(recipientId, it3kquerry.location);
             }
 
             /*  var messageData = {
