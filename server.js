@@ -207,7 +207,11 @@
               console.log(it3kquerry.message);
               sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
               sendGreetMessage(senderID)*/
-              var messageData = {
+              if (payload == 'Program') {
+                  sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
+              }
+
+            /*  var messageData = {
                   recipient: {
                       id: recipientId
                   },
@@ -233,7 +237,7 @@
                           }
                       }
                   }
-              };
+              };*/
             callSendAPI(messageData);
 
         };
