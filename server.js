@@ -193,7 +193,7 @@
                     id: recipientId
                 },
                 message: {
-                    text: "it3kquerry.time"
+                    text: it3kquerry.time
                 }
             };
             callSendAPI(messageData);
