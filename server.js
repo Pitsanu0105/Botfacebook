@@ -205,6 +205,7 @@
                 console.log(it3kquerry.location);
                 console.log(it3kquerry.time);
                 console.log(it3kquerry.message);
+                sendTextMessage(recipientId," it3kquerry.location")
             if (payload == 'Program') {
                 /*sendTextMessage(recipientId, it3kquerry.location);*/
             }
