@@ -341,7 +341,10 @@ function sendGreetMessage (recipientId, messageText) {
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
-function Result (recipientId, messageText) {}
+function Result (recipientId, messageText) {
+  var it3kquerrysport = data3k.filter(data => data.type === 'sport')
+  console.log(it3kquerrysport);
+}
 // -----------------------------//
 // -----------------------------------------------------------------------------
 // ------------------กำหนดการ---------------------------------------------------
