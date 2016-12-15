@@ -201,14 +201,12 @@
         //------------------กำหนดการ---------------------------------------------------
         function Programs(recipientId, payload) {
           var it3kquerry = data3k.find(data => data.type === 'Program')
-            /*  console.log(it3kquerry);
+            console.log(it3kquerry);
                 console.log(it3kquerry.location);
                 console.log(it3kquerry.time);
                 console.log(it3kquerry.message);
-                sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
-                sendGreetMessage(senderID)*/
             if (payload == 'Program') {
-                sendTextMessage(recipientId, it3kquerry.location);
+                /*sendTextMessage(recipientId, it3kquerry.location);*/
             }
 
             /*  var messageData = {
