@@ -393,7 +393,7 @@ function Programs (recipientId) {
   //     text: JSON.stringify(it3kquerry)
   //   }
   // }
-  let pic = 'hhttp://download.seaicons.com/download/i32262/tpdkdesign.net/refresh-cl/tpdkdesign.net-refresh-cl-folder-red-scheduled-tasks.ico'
+  let pic = 'http://download.seaicons.com/download/i32262/tpdkdesign.net/refresh-cl/tpdkdesign.net-refresh-cl-folder-red-scheduled-tasks.ico'
   it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
   console.log('==============================Program==========================')
 
