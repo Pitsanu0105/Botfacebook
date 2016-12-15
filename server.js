@@ -188,7 +188,7 @@ function Programs (recipientId) {
   // console.log(it3kquerry.time)
   // console.log(it3kquerry.message)
   console.log('==============================Program==========================')
-  sendTextMessage(recipientId, it3kquerry)
+  sendTextMessage(recipientId, JSON.stringify(it3kquerry))
 }
 // -----------------------------------------------------------------------------
 // ----------------ตอบกลับ------------------------------------------------------
@@ -198,7 +198,7 @@ function sendTextMessage (recipientId, messageText) {
       id: recipientId
     },
     message: {
-      text: 'messageText'
+      text: messageText
     }
   }
 
