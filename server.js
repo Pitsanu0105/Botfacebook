@@ -186,9 +186,16 @@
             var it3kquerry = data3k.find(data => data.type === 'Program')
             console.log(it3kquerry);
             console.log(it3kquerry.location);
-          //  console.log(it3kquerry.time);
-            //console.log(it3kquerry.message);
-            sendTextMessage(senderID, " it3kquerry.location")
+            console.log(it3kquerry.time);
+            console.log(it3kquerry.message);
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: "it3kquerry.time"
+                }
+            };
             callSendAPI(messageData);
 
         };
