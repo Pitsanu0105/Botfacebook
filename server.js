@@ -175,7 +175,7 @@
                             text: "เลือกสิ่งที่คุณต้องการ",
                             buttons: [{
                                 type: "postback",
-                                title: "🔎 กำหนดการณ์",
+                                title: "🔎 กำหนดการ",
                                 payload: "Program"
                             }, {
                                 type: "postback",
@@ -200,21 +200,40 @@
         //-----------------------------------------------------------------------------
         //------------------กำหนดการ---------------------------------------------------
         function Programs(recipientId, messageText) {
-          var messageData = {
-              recipient: {
-                  id: recipientId
-              },
-              message: {
-                  text: messageText
-              }
-          };
-            var it3kquerry = data3k.find(data => data.type === 'Program')
+          /*  var it3kquerry = data3k.find(data => data.type === 'Program')
             console.log(it3kquerry);
               console.log(it3kquerry.location);
               console.log(it3kquerry.time);
               console.log(it3kquerry.message);
               sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
-              sendGreetMessage(senderID)
+              sendGreetMessage(senderID)*/
+              var messageData = {
+                  recipient: {
+                      id: recipientId
+                  },
+                  message: {
+                      attachment: {
+                          type: "template",
+                          payload: {
+                              template_type: "button",
+                              text: "เลือกสิ่งที่คุณต้องการ",
+                              buttons: [{
+                                  type: "postback",
+                                  title: "🔎 กำหนดการ",
+                                  payload: "Program"
+                              }, {
+                                  type: "postback",
+                                  title: "🔎 ผลการเเข่งขัน",
+                                  payload: "Result"
+                              }, {
+                                  type: "postback",
+                                  title: "👋 ไม่เป็นไร ขอบคุณ",
+                                  payload: "noThank"
+                              }],
+                          }
+                      }
+                  }
+              };
             callSendAPI(messageData);
 
         };
