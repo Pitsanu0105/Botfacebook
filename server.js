@@ -144,7 +144,7 @@
             console.log("Received postback for user %d and page %d with payload '%s' " +
                 "at %d", senderID, recipientID, payload, timeOfPostback);
             if (payload == 'Program') {
-                Programs(senderID);
+                Programs(senderID, payload);
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
@@ -199,17 +199,17 @@
         //-----------------------------//
         //-----------------------------------------------------------------------------
         //------------------กำหนดการ---------------------------------------------------
-        function Programs(recipientId, messageText) {
-          /*  var it3kquerry = data3k.find(data => data.type === 'Program')
-            console.log(it3kquerry);
-              console.log(it3kquerry.location);
-              console.log(it3kquerry.time);
-              console.log(it3kquerry.message);
-              sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
-              sendGreetMessage(senderID)*/
-              if (payload == 'Program') {
-                  sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
-              }
+        function Programs(recipientId, payload) {
+            /*  var it3kquerry = data3k.find(data => data.type === 'Program')
+              console.log(it3kquerry);
+                console.log(it3kquerry.location);
+                console.log(it3kquerry.time);
+                console.log(it3kquerry.message);
+                sendTextMessage(senderID, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
+                sendGreetMessage(senderID)*/
+            if (payload == 'Program') {
+                sendTextMessage(recipientId, "เราไม่เข้าใจในสิ่งที่คุณต้องการ");
+            }
 
             /*  var messageData = {
                   recipient: {
