@@ -139,6 +139,8 @@ function receivedPostback (event) {
     NoThank(senderID)
   } else if (payload === 'Result') {
     Result(senderID)
+  } else if (payload === 'detail') {
+    console.log('detail')
   } else {
     var result = ''
   }
@@ -188,7 +190,24 @@ function Programs (recipientId) {
       id: recipientId
     },
     message: {
-      text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.time} ข้อความ ${it3kquerry.message}`
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'generic',
+          elements: [
+            {
+              title: it3kquerry.message,
+              image_url: 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300',
+              buttons: [{
+                type: 'postback',
+                title: 'รายละเอียด',
+                payload: 'detail'
+              }]
+            }
+          ]
+        }
+      }
+      // text: `สถานที่คือ ${it3kquerry.location} เวลาคือ ${it3kquerry.time} ข้อความ ${it3kquerry.message}`
     }
   }
   console.log('==============================Program==========================')
