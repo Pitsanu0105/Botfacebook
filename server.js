@@ -144,14 +144,7 @@
             console.log("Received postback for user %d and page %d with payload '%s' " +
                 "at %d", senderID, recipientID, payload, timeOfPostback);
             if (payload == 'Program') {
-                //Programs(senderID);
-                var it3kquerry = data3k.find(data => data.type === 'Program')
-                console.log(it3kquerry);
-                console.log(it3kquerry.location);
-                console.log(it3kquerry.time);
-                console.log(it3kquerry.message);
-                sendTextMessage(recipientId, " it3kquerry.location")
-                sendGreetMessage(recipientId)
+                Programs(senderID);
             } else if (payload == 'USER_DEFINED_PAYLOAD') {
                 sendTextMessage(senderID, "สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ")
                 sendGreetMessage(senderID)
@@ -207,7 +200,13 @@
         //-----------------------------------------------------------------------------
         //------------------กำหนดการ---------------------------------------------------
         function Programs(recipientId) {
-
+            var it3kquerry = data3k.find(data => data.type === 'Program')
+            console.log(it3kquerry);
+            console.log(it3kquerry.location);
+            console.log(it3kquerry.time);
+            console.log(it3kquerry.message);
+            sendTextMessage(recipientId, " it3kquerry.location")
+            sendGreetMessage(recipientId)
 
 
             /*  var messageData = {
