@@ -101,33 +101,33 @@ function receivedMessage (event) {
   var messageAttachments = message.attachments
   var quickReply = message.quick_reply
 
-//   if (messageText) {
-//     if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
-//       sendTextMessage(senderID, 'สวัสดีครับ')
-//     } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
-//       sendTextMessage(senderID, 'ยินดีบริการครับ')
-//     }
-//     switch (messageText) {
-//       case 'HELLO':
-//         sendGreetMessage(senderID)
-//         break
-//       case 'hello':
-//         sendGreetMessage(senderID)
-//         break
-//       case 'Hello':
-//         sendGreetMessage(senderID)
-//         break
-//       case 'ขอบใจ':
-//         break
-//
-//       default:
-//         sendTextMessage(senderID, 'เราไม่เข้าใจในสิ่งที่คุณต้องการ')
-//         sendGreetMessage(senderID)
-//     }
-//   } else if (messageAttachments) {
-//     sendTextMessage(senderID, 'ครับ')
-//   }
-// }
+  if (messageText) {
+    if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
+      sendTextMessage(senderID, 'สวัสดีครับ')
+    } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
+      sendTextMessage(senderID, 'ยินดีบริการครับ')
+    }
+    switch (messageText) {
+      case 'HELLO':
+        sendGreetMessage(senderID)
+        break
+      case 'hello':
+        sendGreetMessage(senderID)
+        break
+      case 'Hello':
+        sendGreetMessage(senderID)
+        break
+      case 'ขอบใจ':
+        break
+
+      default:
+        sendTextMessage(senderID, 'เราไม่เข้าใจในสิ่งที่คุณต้องการ')
+        sendGreetMessage(senderID)
+    }
+  } else if (messageAttachments) {
+    sendTextMessage(senderID, 'ครับ')
+  }
+}
 
 function receivedPostback (event) {
   var senderID = event.sender.id
