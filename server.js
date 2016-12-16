@@ -149,11 +149,11 @@ function receivedPostback (event) {
     sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
     NoThank(senderID)
   } else if (payload === 'Result') {
-    Result(senderID)
+    winer(senderID)
   } else if (payload === 'detail01') {
-    console.log('detail')
+    console.log('detail01')
   } else if (payload === 'detail02') {
-    console.log('detail')
+    console.log('detail02')
   } else {
     var result = ''
   }
@@ -345,7 +345,7 @@ function sendGreetMessage (recipientId, messageText) {
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
-function Results (recipientId) {
+function winer (recipientId) {
   var it3kquerry = data3k.filter(data => data.type === 'sport')
   // var messageData = {
   //   recipient: {
