@@ -304,17 +304,6 @@ function receivedPostback (event) {
     NoThank(senderID)
   } else if (payload === 'Result') {
     Result(senderID)
-  } else if (payload === 'detail01') {
-    console.log('detail01')
-    var detail01 = data3k.filter(data => data.type === 'Program')
-    // detail01.toString()
-    for (var i =0; i < detail01.length; i++) {
-        sendTextMessage(senderID, "กิจกรรม " + detail01[i].message)
-        sendTextMessage(senderID,"สถานที่ " + detail01[i].location)
-    }
-    // detail01(senderID)
-  } else if (payload === 'detail02') {
-    console.log('detail02')
   } else {
     var result = ''
   }
@@ -384,30 +373,6 @@ function detail01 (senderID) {
 function Programs (recipientId) {
   var it3kquerry = data3k.filter(data => data.type === 'Program')
   console.log('::: data ::: ', it3kquerry)
-  // var messageData = {
-  //   recipient: {
-  //     id: recipientId
-  //   },
-  //   message: {
-  //     attachment: {
-  //       type: 'template',
-  //       payload: {
-  //         template_type: 'generic',
-  //         elements: [
-  //           {
-  //             title: it3kquerry.message,
-  //             image_url: 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300',
-  //             buttons: [{
-  //               type: 'postback',
-  //               title: 'รายละเอียด',
-  //               payload: 'detail'
-  //             }]
-  //           }
-  //         ]
-  //       }
-  //     }
-  //   }
-  // }
   var messageData = {
     recipient: {
       id: recipientId
@@ -422,16 +387,9 @@ function Programs (recipientId) {
       }
     }
   }
-  // var messageData = {
-  //   recipient: {
-  //     id: recipientId
-  //   },
-  //   message: {
-  //     text: JSON.stringify(it3kquerry)
-  //   }
-  // }
+
   let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
-  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail01'}]}) })
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message + "สถานที่ : " + item.location, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail01'}]}) })
   console.log('==============================Program==========================')
 
   callSendAPI(messageData)
