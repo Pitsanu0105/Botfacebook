@@ -363,7 +363,7 @@ function Result (recipientId, messageText) {
     }
   }
   let pic = 'https://thai.chelseafc.com/content/dam/cfc/logos/honour-competition-logos/capital-one-cup.png'
-  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + "\t" + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
+  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + "\t" + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
   console.log('==============================Result==========================')
 
   callSendAPI(messageData)
