@@ -307,6 +307,7 @@ function receivedPostback (event) {
   } else if (payload === 'detail01') {
     url = "https://it-3k-1f766.firebaseapp.com/"
     sendTextMessage(senderID, url)
+    sendGreetMessage(senderID)
   } else if (payload === 'menu') {
     sendGreetMessage(senderID)
   } else {
