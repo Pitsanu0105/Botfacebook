@@ -101,33 +101,33 @@ function receivedMessage (event) {
   var messageAttachments = message.attachments
   var quickReply = message.quick_reply
 
-  if (messageText) {
-    if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
-      sendTextMessage(senderID, 'สวัสดีครับ')
-    } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
-      sendTextMessage(senderID, 'ยินดีบริการครับ')
-    }
-    switch (messageText) {
-      case 'HELLO':
-        sendGreetMessage(senderID)
-        break
-      case 'hello':
-        sendGreetMessage(senderID)
-        break
-      case 'Hello':
-        sendGreetMessage(senderID)
-        break
-      case 'ขอบใจ':
-        break
-
-      default:
-        sendTextMessage(senderID, 'เราไม่เข้าใจในสิ่งที่คุณต้องการ')
-        sendGreetMessage(senderID)
-    }
-  } else if (messageAttachments) {
-    sendTextMessage(senderID, 'ครับ')
-  }
-}
+//   if (messageText) {
+//     if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
+//       sendTextMessage(senderID, 'สวัสดีครับ')
+//     } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
+//       sendTextMessage(senderID, 'ยินดีบริการครับ')
+//     }
+//     switch (messageText) {
+//       case 'HELLO':
+//         sendGreetMessage(senderID)
+//         break
+//       case 'hello':
+//         sendGreetMessage(senderID)
+//         break
+//       case 'Hello':
+//         sendGreetMessage(senderID)
+//         break
+//       case 'ขอบใจ':
+//         break
+//
+//       default:
+//         sendTextMessage(senderID, 'เราไม่เข้าใจในสิ่งที่คุณต้องการ')
+//         sendGreetMessage(senderID)
+//     }
+//   } else if (messageAttachments) {
+//     sendTextMessage(senderID, 'ครับ')
+//   }
+// }
 
 function receivedPostback (event) {
   var senderID = event.sender.id
@@ -233,111 +233,111 @@ app.post('/webhook', function (req, res) {
   }
 })
 
-// function receivedMessage (event) {
-//   var senderID = event.sender.id
-//   var recipientID = event.recipient.id
-//   var timeOfMessage = event.timestamp
-//   var message = event.message
-//
-//   // console.log('Received message for user %d and page %d at %d with message:',
-//   //   senderID, recipientID, timeOfMessage)
-//   // console.log(JSON.stringify(message))
-//
-//   var isEcho = message.is_echo
-//   var messageId = message.mid
-//   var appId = message.app_id
-//   var metadata = message.metadata
-//
-//   // You may get a text or attachment but not both
-//   var messageText = message.text
-//   var messageAttachments = message.attachments
-//   var quickReply = message.quick_reply
-//
-//   if (messageText) {
-//     if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
-//       sendTextMessage(senderID, 'สวัสดีครับ')
-//     } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
-//       sendTextMessage(senderID, 'ยินดีบริการครับ')
-//     }
-//     switch (messageText) {
-//       case 'HELLO':
-//         sendGreetMessage(senderID)
-//         break
-//       case 'hello':
-//         sendGreetMessage(senderID)
-//         break
-//       case 'Hello':
-//         sendGreetMessage(senderID)
-//         break
-//       case 'ขอบใจ':
-//         break
-//
-//       default:
-//         sendTextMessage(senderID, 'เราไม่เข้าใจในสิ่งที่คุณต้องการ')
-//         sendGreetMessage(senderID)
-//     }
-//   } else if (messageAttachments) {
-//     sendTextMessage(senderID, 'ครับ')
-//   }
-// }
-//
-// function receivedPostback (event) {
-//   var senderID = event.sender.id
-//   var recipientID = event.recipient.id
-//   var timeOfPostback = event.timestamp
-//
-//   // The 'payload' param is a developer-defined field which is set in a postback
-//   // button for Structured Messages.
-//   var payload = event.postback.payload
-//
-//   console.log("Received postback for user %d and page %d with payload '%s' " +
-//     'at %d', senderID, recipientID, payload, timeOfPostback)
-//   if (payload === 'Program') {
-//     Programs(senderID)
-//   } else if (payload === 'USER_DEFINED_PAYLOAD') {
-//     sendTextMessage(senderID, 'สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ')
-//     sendGreetMessage(senderID)
-//   } else if (payload === 'noThank') {
-//     sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
-//     NoThank(senderID)
-//   } else if (payload === 'Result') {
-//     Result(senderID)
-//   } else if (payload === 'detail') {
-//     console.log('detail')
-//   } else {
-//     var result = ''
-//   }
-// }
-// // --------------------ทักทายตอบกลับ---------------------------
-// function sendGreetMessage (recipientId, messageText) {
-//   var messageData = {
-//     recipient: {
-//       id: recipientId
-//     },
-//     message: {
-//       attachment: {
-//         type: 'template',
-//         payload: {
-//           template_type: 'button',
-//           text: 'เลือกสิ่งที่คุณต้องการ',
-//           buttons: [{
-//             type: 'postback',
-//             title: '🔎 กำหนดการ',
-//             payload: 'Program'
-//           }, {
-//             type: 'postback',
-//             title: '🔎 ผลการเเข่งขัน',
-//             payload: 'Result'
-//           }, {
-//             type: 'postback',
-//             title: '👋 ไม่เป็นไร ขอบคุณ',
-//             payload: 'noThank'
-//           }]
-//         }
-//       }
-//     }
-//   }
-//
+function receivedMessage (event) {
+  var senderID = event.sender.id
+  var recipientID = event.recipient.id
+  var timeOfMessage = event.timestamp
+  var message = event.message
+
+  // console.log('Received message for user %d and page %d at %d with message:',
+  //   senderID, recipientID, timeOfMessage)
+  // console.log(JSON.stringify(message))
+
+  var isEcho = message.is_echo
+  var messageId = message.mid
+  var appId = message.app_id
+  var metadata = message.metadata
+
+  // You may get a text or attachment but not both
+  var messageText = message.text
+  var messageAttachments = message.attachments
+  var quickReply = message.quick_reply
+
+  if (messageText) {
+    if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
+      sendTextMessage(senderID, 'สวัสดีครับ')
+    } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
+      sendTextMessage(senderID, 'ยินดีบริการครับ')
+    }
+    switch (messageText) {
+      case 'HELLO':
+        sendGreetMessage(senderID)
+        break
+      case 'hello':
+        sendGreetMessage(senderID)
+        break
+      case 'Hello':
+        sendGreetMessage(senderID)
+        break
+      case 'ขอบใจ':
+        break
+
+      default:
+        sendTextMessage(senderID, 'เราไม่เข้าใจในสิ่งที่คุณต้องการ')
+        sendGreetMessage(senderID)
+    }
+  } else if (messageAttachments) {
+    sendTextMessage(senderID, 'ครับ')
+  }
+}
+
+function receivedPostback (event) {
+  var senderID = event.sender.id
+  var recipientID = event.recipient.id
+  var timeOfPostback = event.timestamp
+
+  // The 'payload' param is a developer-defined field which is set in a postback
+  // button for Structured Messages.
+  var payload = event.postback.payload
+
+  console.log("Received postback for user %d and page %d with payload '%s' " +
+    'at %d', senderID, recipientID, payload, timeOfPostback)
+  if (payload === 'Program') {
+    Programs(senderID)
+  } else if (payload === 'USER_DEFINED_PAYLOAD') {
+    sendTextMessage(senderID, 'สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ')
+    sendGreetMessage(senderID)
+  } else if (payload === 'noThank') {
+    sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
+    NoThank(senderID)
+  } else if (payload === 'Result') {
+    Result(senderID)
+  } else if (payload === 'detail') {
+    console.log('detail')
+  } else {
+    var result = ''
+  }
+}
+// --------------------ทักทายตอบกลับ---------------------------
+function sendGreetMessage (recipientId, messageText) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'button',
+          text: 'เลือกสิ่งที่คุณต้องการ',
+          buttons: [{
+            type: 'postback',
+            title: '🔎 กำหนดการ',
+            payload: 'Program'
+          }, {
+            type: 'postback',
+            title: '🔎 ผลการเเข่งขัน',
+            payload: 'Result'
+          }, {
+            type: 'postback',
+            title: '👋 ไม่เป็นไร ขอบคุณ',
+            payload: 'noThank'
+          }]
+        }
+      }
+    }
+  }
+
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
