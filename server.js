@@ -304,8 +304,10 @@ function receivedPostback (event) {
     NoThank(senderID)
   } else if (payload === 'Result') {
     Result(senderID)
-  } else if (payload === 'detail') {
-    console.log('detail')
+  } else if (payload === 'detail01') {
+    console.log('detail01')
+  } else if (payload === 'detail02') {
+    console.log('detail02')
   } else {
     var result = ''
   }
@@ -371,6 +373,7 @@ function Result (recipientId, messageText) {
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
   var it3kquerry = data3k.filter(data => data.type === 'Program')
+  console.log('::: data ::: ', it3kquerry)
   // var messageData = {
   //   recipient: {
   //     id: recipientId
