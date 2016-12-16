@@ -310,8 +310,8 @@ function receivedPostback (event) {
     // detail01.toString()
     for (var i =0; i < detail01.length; i++) {
         sendTextMessage(senderID, detail01[i].message)
-        sendTextMessage(senderID, detail01[i].location)
-        sendTextMessage(senderID, detail01[i].time)
+        sendTextMessage(senderID,"สถานที ่" + detail01[i].location)
+        sendTextMessage(senderID, "เวลา " + detail01[i].time)
     }
     // detail01(senderID)
   } else if (payload === 'detail02') {
