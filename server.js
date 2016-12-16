@@ -308,7 +308,11 @@ function receivedPostback (event) {
     console.log('detail01')
     var detail01 = data3k.filter(data => data.type === 'Program')
     // detail01.toString()
-      sendTextMessage(senderID, detail01.toString())
+    for (var i =0; i < detail01.length; i++) {
+        sendTextMessage(senderID, detail01[i].message)
+        sendTextMessage(senderID, detail01[i].location)
+        sendTextMessage(senderID, detail01[i].time)
+    }
     // detail01(senderID)
   } else if (payload === 'detail02') {
     console.log('detail02')
