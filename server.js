@@ -363,7 +363,7 @@ function Result (recipientId, messageText) {
     }
   }
   let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
-  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail02'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
+  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail02'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
   callSendAPI(messageData)
 }
 // -----------------------------//
