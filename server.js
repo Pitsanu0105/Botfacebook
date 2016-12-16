@@ -150,7 +150,9 @@ function receivedPostback (event) {
     NoThank(senderID)
   } else if (payload === 'Result') {
     Result(senderID)
-  } else if (payload === 'detail') {
+  } else if (payload === 'Menu') {
+    sendGreetMessage(senderID)
+  }else if (payload === 'detail') {
     console.log('detail')
   } else {
     var result = ''
@@ -420,7 +422,7 @@ function Programs (recipientId) {
   //   }
   // }
   let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
-  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'Menu'}]}) })
   console.log('==============================Program==========================')
 
   callSendAPI(messageData)
