@@ -150,8 +150,6 @@ function receivedPostback (event) {
     NoThank(senderID)
   } else if (payload === 'Result') {
     Result(senderID)
-  } else if (payload === 'Menu') {
-    sendGreetMessage(senderID)
   } else if (payload === 'detail') {
     console.log('detail')
   } else {
