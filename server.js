@@ -347,26 +347,7 @@ function sendGreetMessage (recipientId, messageText) {
 // ------------ผลการเเข่งขัน---------------//
 function Result (recipientId, messageText) {
   var it3kquerrysport = data3k.filter(data => data.type === 'sport')
-  console.log('bbbbbb',it3kquerrysport);
-
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'generic',
-          elements: []
-        }
-      }
-    }
-  }
-  let pic = 'https://thai.chelseafc.com/content/dam/cfc/logos/honour-competition-logos/capital-one-cup.png'
-  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + "\t" + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail02'}]}) })
-  console.log('==============================Result==========================')
-
+  console.log('bbbbbbbbbbbbbbbb', it3kquerrysport);
   callSendAPI(messageData)
 }
 // -----------------------------//
