@@ -159,7 +159,7 @@ function receivedPostback (event) {
   }
 }
 // --------------------ทักทายตอบกลับ---------------------------
-function sendGreetMessage (recipientId, messageText) {
+//function sendGreetMessage (recipientId, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -307,6 +307,8 @@ function receivedPostback (event) {
   } else if (payload === 'detail01') {
     url = "https://it-3k-1f766.firebaseapp.com/"
     sendTextMessage(senderID, url)
+  } else if (payload === 'menu') {
+    sendGreetMessage(senderID)
   } else {
     var result = ''
   }
