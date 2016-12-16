@@ -81,7 +81,7 @@ app.post('/webhook', function (req, res) {
   }
 })
 
-function receivedMessage (event) {
+/*function receivedMessage (event) {
   var senderID = event.sender.id
   var recipientID = event.recipient.id
   var timeOfMessage = event.timestamp
@@ -127,7 +127,7 @@ function receivedMessage (event) {
   } else if (messageAttachments) {
     sendTextMessage(senderID, 'ครับ')
   }
-}
+}*/
 
 function receivedPostback (event) {
   var senderID = event.sender.id
@@ -159,7 +159,7 @@ function receivedPostback (event) {
   }
 }
 // --------------------ทักทายตอบกลับ---------------------------
-function sendGreetMessage (recipientId, messageText) {
+/*function sendGreetMessage (recipientId, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -189,9 +189,8 @@ function sendGreetMessage (recipientId, messageText) {
   }
 
   callSendAPI(messageData)
-}
-// ------------ผลการเเข่งขัน---------------//
-function Result (recipientId, messageText) {}
+}*/
+
 app.get('/webhook', function (req, res) {
   var key = 'EAAJeCn5oY2wBACArnEtdI8TN998JFLrczb16ZAMMc5Ctr3VM3ytjkQDEteMzXppZClCLT2dvryZBWKl99hKK4Yhp5A8LNUy9emmklQ31eeCn9z7YsZAVxRKZAZBv7ZBvLtIHsW9MB5oUz3tF55vxyzIO1g0yEO6QLkvrszhjyZBLcwZDZD'
   if (req.query['hub.mode'] === 'subscribe' &&
@@ -272,6 +271,7 @@ function receivedMessage (event) {
         sendGreetMessage(senderID)
         break
       case 'ขอบใจ':
+        NoThank(senderID)
         break
 
       default:
@@ -283,7 +283,7 @@ function receivedMessage (event) {
   }
 }
 
-function receivedPostback (event) {
+/*function receivedPostback (event) {
   var senderID = event.sender.id
   var recipientID = event.recipient.id
   var timeOfPostback = event.timestamp
@@ -313,7 +313,7 @@ function receivedPostback (event) {
   } else {
     var result = ''
   }
-}
+}*/
 // --------------------ทักทายตอบกลับ---------------------------
 function sendGreetMessage (recipientId, messageText) {
   var messageData = {
@@ -370,11 +370,7 @@ function Result (recipientId, messageText) {
 
   callSendAPI(messageData)
 }
-// -----------------------------//
-// -----------------------------------------------------------------------------
-function detail01 (senderID) {
-  // var it3kquerry = data3k.filter(data => data.type === 'Program')
-}
+
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
   var it3kquerry = data3k.filter(data => data.type === 'Program')
@@ -400,7 +396,6 @@ function Programs (recipientId) {
 
   callSendAPI(messageData)
 }
-// -----------------------------------------------------------------------------
 // ----------------ตอบกลับ------------------------------------------------------
 function sendTextMessage (recipientId, messageText) {
   var messageData = {
@@ -414,7 +409,6 @@ function sendTextMessage (recipientId, messageText) {
 
   callSendAPI(messageData)
 }
-// ------------------------------------------------------------------------------
 // --------ดึงAPIคนที่คุยด้วย---------------------------------------------------------
 function callSendAPI (messageData) {
   console.log('---------------------------------------------------')
