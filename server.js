@@ -303,7 +303,7 @@ function receivedPostback (event) {
     sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
     NoThank(senderID)
   } else if (payload === 'Result') {
-    Results(senderID)
+    winer(senderID)
   }else if (payload === 'menu') {
     sendGreetMessage(senderID)
   } else if (payload === 'detail') {
