@@ -343,7 +343,7 @@ function sendGreetMessage (recipientId, messageText) {
 // ------------ผลการเเข่งขัน---------------//
 function Result (recipientId, messageText) {
   var it3kquerrysport = data3k.filter(data => data.type === 'sport')
-  console.log('aaaaaaaaaa',it3kquerrysport);
+  console.log('aaaaaaaaaa',it3kquerrysport[0].status);
   var messageData = {
     recipient: {
       id: recipientId
