@@ -306,6 +306,10 @@ function receivedPostback (event) {
     Result(senderID)
   } else if (payload === 'detail01') {
     console.log('detail01')
+    var detail01 = data3k.filter(data => data.type === 'Program')
+    // detail01.toString()
+      sendTextMessage(senderID, detail01.toString())
+    // detail01(senderID)
   } else if (payload === 'detail02') {
     console.log('detail02')
   } else {
@@ -370,6 +374,9 @@ function Result (recipientId, messageText) {
 }
 // -----------------------------//
 // -----------------------------------------------------------------------------
+function detail01 (senderID) {
+  // var it3kquerry = data3k.filter(data => data.type === 'Program')
+}
 // ------------------กำหนดการ---------------------------------------------------
 function Programs (recipientId) {
   var it3kquerry = data3k.filter(data => data.type === 'Program')
