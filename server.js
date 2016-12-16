@@ -141,13 +141,16 @@ function receivedMessage (event) {
   var quickReply = message.quick_reply
 
   if (messageText) {
-    if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello') {
+    if (messageText === 'HELLO' || messageText === 'hello' || messageText === 'Hello' || messageText === 'สวัสดี') {
       sendTextMessage(senderID, 'สวัสดีครับ')
     } else if (messageText === 'ขอบใจ' || messageText === 'ขอบคุณ') {
       sendTextMessage(senderID, 'ยินดีบริการครับ')
     }
     switch (messageText) {
       case 'HELLO':
+        sendGreetMessage(senderID)
+        break
+      case 'สวัสดี':
         sendGreetMessage(senderID)
         break
       case 'hello':
@@ -186,10 +189,10 @@ function receivedPostback (event) {
     sendTextMessage(senderID, 'สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ')
     sendGreetMessage(senderID)
   } else if (payload === 'noThank') {
-    sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
+    sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือตารางการเเข่งขันก็กลับมาได้เสมอนะครับ')
     NoThank(senderID)
-  } else if (payload === 'Result') {
-    Result(senderID)
+  } else if (payload === 'compettition') {
+    Compettition(senderID)
   } else if (payload === 'detail01') {
     url = "https://it-3k-1f766.firebaseapp.com/"
     sendTextMessage(senderID, url)
@@ -218,8 +221,8 @@ function sendGreetMessage (recipientId, messageText) {
             payload: 'Program'
           }, {
             type: 'postback',
-            title: '🔎 ผลการเเข่งขัน',
-            payload: 'Result'
+            title: '🔎 การเเข่งขัน',
+            payload: 'compettition'
           }, {
             type: 'postback',
             title: '👋 ไม่เป็นไร ขอบคุณ',
@@ -233,7 +236,7 @@ function sendGreetMessage (recipientId, messageText) {
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
-function Result (recipientId, messageText) {
+function Compettition (recipientId, messageText) {
   var it3kquerrysport = data3k.filter(data => data.type === 'sport')
   console.log(it3kquerrysport);
   var messageData = {
