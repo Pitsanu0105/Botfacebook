@@ -362,7 +362,7 @@ function Result (recipientId, messageText) {
     }
   }
   let pic = 'https://thai.chelseafc.com/content/dam/cfc/logos/honour-competition-logos/capital-one-cup.png'
-  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + "\t" + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'เข้าสู่เว็บไซต์', payload: 'detail01'}]}) })
+  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + "\t" + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'เข้าสู่เว็บไซต์', payload: 'detail01'}, {type: 'postback', title: 'กลับหน้าหลัก', payload: 'menu'}]}) })
   console.log('==============================Result==========================')
 
   callSendAPI(messageData)
@@ -392,7 +392,7 @@ function Programs (recipientId) {
   }
 
   let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
-  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'เข้าสู่เว็บไซต์', payload: 'detail01'}]}) })
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'เข้าสู่เว็บไซต์', payload: 'detail01'}, {type: 'postback', title: 'กลับหน้าหลัก', payload: 'menu'}]}) })
   console.log('==============================Program==========================')
 
   callSendAPI(messageData)
