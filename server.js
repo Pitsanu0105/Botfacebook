@@ -152,6 +152,8 @@ function receivedPostback (event) {
     Result(senderID)
   } else if (payload === 'detail') {
     console.log('detail')
+  } else if (payload === 'menu') {
+    sendGreetMessage(senderID)
   } else {
     var result = ''
   }
@@ -463,7 +465,7 @@ function callSendAPI (messageData) {
 }
 // ------------------------------------------------------------------------------
 // ------------ก่อนจาก-----------------------------------------------------------
-function fineHeres (recipientId, messageText) {
+function backTomenu (recipientId, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -476,8 +478,8 @@ function fineHeres (recipientId, messageText) {
           text: 'ถ้าต้องการดูอื่นๆ กรูณากดด้านล่าง',
           buttons: [{
             type: 'postback',
-            title: '🔎 ต้องการดูอื่นๆอีก',
-            payload: 'Program'
+            title: '🔎 กลับเมนู',
+            payload: 'menu'
           }]
         }
       }
