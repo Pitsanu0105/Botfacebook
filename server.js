@@ -159,7 +159,7 @@ function receivedPostback (event) {
   }
 }
 // --------------------ทักทายตอบกลับ---------------------------
-//function sendGreetMessage (recipientId, messageText) {
+function sendGreetMessage (recipientId, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -314,7 +314,7 @@ function receivedPostback (event) {
   }
 }
 // --------------------ทักทายตอบกลับ---------------------------
-function sendGreetMessage (recipientId, messageText) {
+//function sendGreetMessage (recipientId, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
