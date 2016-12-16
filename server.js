@@ -348,6 +348,22 @@ function sendGreetMessage (recipientId, messageText) {
 function Result (recipientId, messageText) {
   var it3kquerrysport = data3k.filter(data => data.type === 'sport')
   console.log('bbbbbbbbbbbbbbbb', it3kquerrysport);
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'generic',
+          elements: []
+        }
+      }
+    }
+  }
+  let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail02'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
   callSendAPI(messageData)
 }
 // -----------------------------//
