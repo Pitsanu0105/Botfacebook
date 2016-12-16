@@ -148,10 +148,12 @@ function receivedPostback (event) {
   } else if (payload === 'noThank') {
     sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
     NoThank(senderID)
-  } else if (payload === 'Result') {
-    Result(senderID)
-  } else if (payload === 'detail') {
-    console.log('detail')
+  } else if (payload === 'results') {
+    winer(senderID)
+  } else if (payload === 'detail01') {
+    console.log('detail01')
+  } else if (payload === 'detail02') {
+    console.log('detail02')
   } else {
     var result = ''
   }
@@ -175,7 +177,7 @@ function sendGreetMessage (recipientId, messageText) {
           }, {
             type: 'postback',
             title: '🔎 ผลการเเข่งขัน',
-            payload: 'Result'
+            payload: 'results'
           }, {
             type: 'postback',
             title: '👋 ไม่เป็นไร ขอบคุณ',
@@ -281,33 +283,35 @@ function receivedMessage (event) {
   }
 }
 
-function receivedPostback (event) {
-  var senderID = event.sender.id
-  var recipientID = event.recipient.id
-  var timeOfPostback = event.timestamp
-
-  // The 'payload' param is a developer-defined field which is set in a postback
-  // button for Structured Messages.
-  var payload = event.postback.payload
-
-  console.log("Received postback for user %d and page %d with payload '%s' " +
-    'at %d', senderID, recipientID, payload, timeOfPostback)
-  if (payload === 'Program') {
-    Programs(senderID)
-  } else if (payload === 'USER_DEFINED_PAYLOAD') {
-    sendTextMessage(senderID, 'สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ')
-    sendGreetMessage(senderID)
-  } else if (payload === 'noThank') {
-    sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
-    NoThank(senderID)
-  } else if (payload === 'Result') {
-    Result(senderID)
-  } else if (payload === 'detail') {
-    console.log('detail')
-  } else {
-    var result = ''
-  }
-}
+// function receivedPostback (event) {
+//   var senderID = event.sender.id
+//   var recipientID = event.recipient.id
+//   var timeOfPostback = event.timestamp
+//
+//   // The 'payload' param is a developer-defined field which is set in a postback
+//   // button for Structured Messages.
+//   var payload = event.postback.payload
+//
+//   console.log("Received postback for user %d and page %d with payload '%s' " +
+//     'at %d', senderID, recipientID, payload, timeOfPostback)
+//   if (payload === 'Program') {
+//     Programs(senderID)
+//   } else if (payload === 'USER_DEFINED_PAYLOAD') {
+//     sendTextMessage(senderID, 'สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ')
+//     sendGreetMessage(senderID)
+//   } else if (payload === 'noThank') {
+//     sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
+//     NoThank(senderID)
+//   } else if (payload === 'results') {
+//     winer(senderID)
+//   }else if (payload === 'menu') {
+//     sendGreetMessage(senderID)
+//   } else if (payload === 'detail') {
+//     console.log('detail')
+//   } else {
+//     var result = ''
+//   }
+// }
 // --------------------ทักทายตอบกลับ---------------------------
 function sendGreetMessage (recipientId, messageText) {
   var messageData = {
@@ -341,9 +345,32 @@ function sendGreetMessage (recipientId, messageText) {
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
-function Result (recipientId, messageText) {
-  var it3kquerrysport = data3k.filter(data => data.type === 'sport')
-  console.log(it3kquerrysport);
+function winer (recipientId) {
+  var it3kquerry = data3k.filter(data => data.type === 'sport')
+  // var messageData = {
+  //   recipient: {
+  //     id: recipientId
+  //   },
+  //   message: {
+  //     attachment: {
+  //       type: 'template',
+  //       payload: {
+  //         template_type: 'generic',
+  //         elements: [
+  //           {
+  //             title: it3kquerry.message,
+  //             image_url: 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300',
+  //             buttons: [{
+  //               type: 'postback',
+  //               title: 'รายละเอียด',
+  //               payload: 'detail'
+  //             }]
+  //           }
+  //         ]
+  //       }
+  //     }
+  //   }
+  // }
   var messageData = {
     recipient: {
       id: recipientId
@@ -358,8 +385,16 @@ function Result (recipientId, messageText) {
       }
     }
   }
-  let pic = 'https://thai.chelseafc.com/content/dam/cfc/logos/honour-competition-logos/capital-one-cup.png'
-  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + "\t" + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
+  // var messageData = {
+  //   recipient: {
+  //     id: recipientId
+  //   },
+  //   message: {
+  //     text: JSON.stringify(it3kquerry)
+  //   }
+  // }
+  let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน", image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail01'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
   console.log('==============================Result==========================')
 
   callSendAPI(messageData)
@@ -416,7 +451,7 @@ function Programs (recipientId) {
   //   }
   // }
   let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
-  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail01'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
   console.log('==============================Program==========================')
 
   callSendAPI(messageData)
