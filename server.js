@@ -150,7 +150,9 @@ function receivedPostback (event) {
     NoThank(senderID)
   } else if (payload === 'Result') {
     Result(senderID)
-  } else if (payload === 'detail') {
+  } else if (payload === 'detail01') {
+    console.log('detail')
+  } else if (payload === 'detail02') {
     console.log('detail')
   } else {
     var result = ''
@@ -347,7 +349,6 @@ function Result (recipientId, messageText) {
   var it3kquerrysport = data3k.filter(data => data.type === 'sport')
   console.log('bbbbbb',it3kquerrysport);
 
-
   var messageData = {
     recipient: {
       id: recipientId
@@ -363,7 +364,7 @@ function Result (recipientId, messageText) {
     }
   }
   let pic = 'https://thai.chelseafc.com/content/dam/cfc/logos/honour-competition-logos/capital-one-cup.png'
-  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + "\t" + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}]}) })
+  it3kquerrysport.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + item.sport + "\t" + item.competition, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail02'}]}) })
   console.log('==============================Result==========================')
 
   callSendAPI(messageData)
@@ -420,7 +421,7 @@ function Programs (recipientId) {
   //   }
   // }
   let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
-  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: item.message, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail01'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
   console.log('==============================Program==========================')
 
   callSendAPI(messageData)
