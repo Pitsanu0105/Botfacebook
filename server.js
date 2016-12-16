@@ -345,9 +345,32 @@ function sendGreetMessage (recipientId, messageText) {
   callSendAPI(messageData)
 }
 // ------------ผลการเเข่งขัน---------------//
-function Result (recipientId, messageText) {
-  var it3kquerrysport = data3k.filter(data => data.type === 'sport')
-  console.log('bbbbbbbbbbbbbbbb', it3kquerrysport);
+function Result (recipientId) {
+  var it3kquerry = data3k.filter(data => data.type === 'sport')
+  // var messageData = {
+  //   recipient: {
+  //     id: recipientId
+  //   },
+  //   message: {
+  //     attachment: {
+  //       type: 'template',
+  //       payload: {
+  //         template_type: 'generic',
+  //         elements: [
+  //           {
+  //             title: it3kquerry.message,
+  //             image_url: 'https://lh3.googleusercontent.com/MOf9Kxxkj7GvyZlTZOnUzuYv0JAweEhlxJX6gslQvbvlhLK5_bSTK6duxY2xfbBsj43H=w300',
+  //             buttons: [{
+  //               type: 'postback',
+  //               title: 'รายละเอียด',
+  //               payload: 'detail'
+  //             }]
+  //           }
+  //         ]
+  //       }
+  //     }
+  //   }
+  // }
   var messageData = {
     recipient: {
       id: recipientId
@@ -362,8 +385,18 @@ function Result (recipientId, messageText) {
       }
     }
   }
+  // var messageData = {
+  //   recipient: {
+  //     id: recipientId
+  //   },
+  //   message: {
+  //     text: JSON.stringify(it3kquerry)
+  //   }
+  // }
   let pic = 'https://cdn3.iconfinder.com/data/icons/metro-business/512/date_and_time-256.png'
-  it3kquerrysport.forEach((items) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน" + "\n" + items.sport + items.competition, image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail02'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
+  it3kquerry.forEach((item) => { messageData.message.attachment.payload.elements.push({title: "ผลการเเข่งขัน", image_url: pic, buttons: [{type: 'postback', title: 'รายละเอียด', payload: 'detail01'}, {type: 'postback', title: 'กลับเมนูหลัก', payload: 'menu'}]}) })
+  console.log('==============================Result==========================')
+
   callSendAPI(messageData)
 }
 // -----------------------------//
