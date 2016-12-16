@@ -152,7 +152,7 @@ function receivedPostback (event) {
     Result(senderID)
   } else if (payload === 'Menu') {
     sendGreetMessage(senderID)
-  }else if (payload === 'detail') {
+  } else if (payload === 'detail') {
     console.log('detail')
   } else {
     var result = ''
