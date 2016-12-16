@@ -148,7 +148,7 @@ function receivedPostback (event) {
   } else if (payload === 'noThank') {
     sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
     NoThank(senderID)
-  } else if (payload === 'Result') {
+  } else if (payload === 'results') {
     winer(senderID)
   } else if (payload === 'detail01') {
     console.log('detail01')
@@ -177,7 +177,7 @@ function sendGreetMessage (recipientId, messageText) {
           }, {
             type: 'postback',
             title: '🔎 ผลการเเข่งขัน',
-            payload: 'Result'
+            payload: 'results'
           }, {
             type: 'postback',
             title: '👋 ไม่เป็นไร ขอบคุณ',
@@ -283,35 +283,35 @@ function receivedMessage (event) {
   }
 }
 
-function receivedPostback (event) {
-  var senderID = event.sender.id
-  var recipientID = event.recipient.id
-  var timeOfPostback = event.timestamp
-
-  // The 'payload' param is a developer-defined field which is set in a postback
-  // button for Structured Messages.
-  var payload = event.postback.payload
-
-  console.log("Received postback for user %d and page %d with payload '%s' " +
-    'at %d', senderID, recipientID, payload, timeOfPostback)
-  if (payload === 'Program') {
-    Programs(senderID)
-  } else if (payload === 'USER_DEFINED_PAYLOAD') {
-    sendTextMessage(senderID, 'สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ')
-    sendGreetMessage(senderID)
-  } else if (payload === 'noThank') {
-    sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
-    NoThank(senderID)
-  } else if (payload === 'Result') {
-    winer(senderID)
-  }else if (payload === 'menu') {
-    sendGreetMessage(senderID)
-  } else if (payload === 'detail') {
-    console.log('detail')
-  } else {
-    var result = ''
-  }
-}
+// function receivedPostback (event) {
+//   var senderID = event.sender.id
+//   var recipientID = event.recipient.id
+//   var timeOfPostback = event.timestamp
+//
+//   // The 'payload' param is a developer-defined field which is set in a postback
+//   // button for Structured Messages.
+//   var payload = event.postback.payload
+//
+//   console.log("Received postback for user %d and page %d with payload '%s' " +
+//     'at %d', senderID, recipientID, payload, timeOfPostback)
+//   if (payload === 'Program') {
+//     Programs(senderID)
+//   } else if (payload === 'USER_DEFINED_PAYLOAD') {
+//     sendTextMessage(senderID, 'สวัสดีครับ พวกเราทีมงาน มจพ ปราจีนบุรี ยินดีต้อนรับเข้าสู่งาน IT 3 พระจอม ครั้งที่ 14 ครับ')
+//     sendGreetMessage(senderID)
+//   } else if (payload === 'noThank') {
+//     sendTextMessage(senderID, 'ขอบคุณที่ใช้บริการกับเรานะครับ' + '\n' + 'หากคุณต้องการเช็คตารางเวลาหรือผลการเเข่งขันก็กลับมาได้เสมอนะครับ')
+//     NoThank(senderID)
+//   } else if (payload === 'results') {
+//     winer(senderID)
+//   }else if (payload === 'menu') {
+//     sendGreetMessage(senderID)
+//   } else if (payload === 'detail') {
+//     console.log('detail')
+//   } else {
+//     var result = ''
+//   }
+// }
 // --------------------ทักทายตอบกลับ---------------------------
 function sendGreetMessage (recipientId, messageText) {
   var messageData = {
